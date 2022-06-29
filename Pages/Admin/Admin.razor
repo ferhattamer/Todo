@@ -1,0 +1,70 @@
+@page "/Admin"
+@inherits AdminBase
+@inject NavigationManager NavigationManager
+@inject IJSRuntime js
+<p>
+  @Kontrol
+  <input placeholder="ID" @bind="inputId" />
+  <br />
+  <input placeholder="İsim" @bind="inputAd" />
+  <br />
+  <input placeholder="Soyisim" @bind="inputSoyad" />
+  <br />
+  <input placeholder="Kullanıcı Adı" @bind="inputKullaniciadi" />
+  <br />
+  <input type="password" minlenght="8 " placeholder="Şifre" @bind="inputPassword" required />
+  <br />
+  <label for="Rol">Rol Seç:</label>
+  <select name="Rol" @bind="inputRole">
+    <option value="">Tanımsız</option>
+    <option value="User">User</option>
+    <option value="Moderator">Moderator</option>
+    <option value="Admin">Admin</option>
+  </select>
+</p>
+<br />
+<button class="btn btn-success" @onclick="GetUser">Kullanıcı Getir</button>
+<button class="btn btn-primary" @onclick="InsertUser">Kullacı Ekle</button>
+<button class="btn btn-warning" @onclick="UpdateUser">Kullanıcı Güncelle</button>
+<button class="btn btn-danger" @onclick="DeleteUser">Kullanıcı Sil</button>
+<br />
+<br />
+<h1>Kullanıcılar</h1>
+<br />
+<table class="table">
+  <thead>
+    <tr>
+      <th>Kullanıcı ID</th>
+      <th>Kullanıcı Adı</th>
+      <th>Kullanıcı Soyadı</th>
+      <th>Kullanıcı KullancıAdı</th>
+      <th>Kullanıcı Şifresi</th>
+      <th>Kullanıcı Rolü</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (kullanici == null)
+    {
+      <p><em>Loading....</em></p>
+    }
+    else
+    {
+      @foreach (var xm in kullanici)
+      {
+        <tr>
+
+          <td>
+            @xm.KId
+          </td>
+          <td>@xm.KAd </td>
+          <td>@xm.KSoy </td>
+          <td>@xm.KullaniciAdi</td>
+          <td>@xm.KPassword </td>
+          <td>@xm.KRole</td>
+
+        </tr>
+      }
+
+    }
+  </tbody>
+</table>

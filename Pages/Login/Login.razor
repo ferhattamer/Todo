@@ -1,0 +1,103 @@
+@page "/"
+@inherits ControlBase
+@inject NavigationManager NavigationManager
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        font-family: sans-serif;
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .kutu {
+        width: 400px;
+        background: white;
+        height: 700px;
+        padding: 80px 40px;
+        border-style: solid;
+        /*sağdan soldan 40px yukarıdan aşağıdan 80 px padding*/
+        border-radius: 10px;
+        /*köşleri ovalleştirme*/
+        position: absolute;
+        left: 58%;
+        /*soldan hizalama*/
+        top: 50%;
+        /*yukarıdan hizalama*/
+        transform: translate(-50%, -50%);
+        /*tam hizalama sağlamak için*/
+    }
+
+    .txtb {
+
+        /*alt çizgi ekleme*/
+        position: relative;
+        margin: 30px 0;
+    }
+
+    .txtb input {
+        font-size: 15px;
+        color: #333;
+        border: none;
+        width: 100%;
+        outline: none;
+        background: none;
+        padding: 0 5px;
+        height: 40px;
+        border-bottom: 2px solid #adadad;
+    }
+
+    img.loginimg {
+        margin-left: 30px;
+        margin-bottom: 50px;
+        display: block;
+        background: black;
+        border-radius: 25%;
+        width: 250px;
+        height: 200px;
+    }
+
+    .logbtn {
+        display: block;
+        width: 100%;
+        height: 50px;
+        border: none;
+        background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, black 70%);
+        background-size: 200%;
+        color: white;
+        outline: none;
+        /*köşelerini kapatmak siyah olmamsı için*/
+        cursor: pointer;
+        border-radius: 15px;
+    }
+
+    .logbtn:hover {
+        background: white;
+        color: black;
+        border: 2px solid black;
+    }
+</style>
+
+<body>
+    <div class="kutu">
+        <div class="contact-form">
+            <img src="images/Login.jpg" class="loginimg">
+            <h2>Giriş Yap </h2>
+            <form>
+                <div class="txtb">
+                    <input type="text" placeholder="Username" @bind="inputKullaniciAdi" minlength="8" required />
+                </div>
+                <div class="txtb">
+                    <input type="password" placeholder="Password" minlength="8" @bind="inputPassword" required />
+                </div>
+                <input type="button" class="logbtn" value="Giriş Yap" @onclick="SearchUser" />
+                <br><input type="button" class="logbtn" value="Kaydol" onclick="window.location.href ='/Register'" />
+            </form>
+        </div>
+    </div>
+</body>

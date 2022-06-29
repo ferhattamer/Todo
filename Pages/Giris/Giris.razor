@@ -1,0 +1,59 @@
+@page "/Giris"
+@inherits GirisBase
+
+welcome back @Kontrol
+<body>
+<br/>
+<p>
+    Id:<input @bind="inputId" />
+    Durum:
+    <label for="Durum">Todo Durum:</label>
+  <select name="Durum" @bind="inputDurum">
+    <option value="Devam Ediyor...">Devam Ediyor...</option>
+    <option value="Tamamlandı.">Tamamlandı.</option>
+  </select>
+    </p>
+    <br/>
+    <button class="btn btn-success" @onclick="GetData">Todo Getir</button>
+    <button class="btn btn-warning" @onclick="UpdateData">Update</button>
+    <div class="Tooltip">
+        <br/><br/><br/>
+   <table class="table">
+            <thead>
+                <tr>
+                    <th>Todo ID</th>
+                    <th>Todo Detayı</th>
+                    <th>Todo Durumu</th>
+                    <th>Todo Başlangıç Tarihi</th>
+                    <th>Todo Bitiş Tarihi</th>
+                </tr>
+            </thead>
+            <tbody>
+    @if(people == null )
+    {
+        <p><em>Loading....</em></p>
+    }
+    else 
+    {
+        @foreach(var p in people)
+        {
+            <tr>
+
+            <td>
+                @p.Id 
+            </td>
+            <td>@p.TodoDetay</td>
+            <td>@p.TodoDurum</td>
+            <td>@p.TodoSDate</td>
+            <td>@p.TodoFDate</td>
+              </tr>    
+              
+        }
+       
+    }
+           </tbody>
+ </table>
+ </div>
+    <br/>
+    <p>@error Adet Todo Yüklendi.</p>
+    </body>

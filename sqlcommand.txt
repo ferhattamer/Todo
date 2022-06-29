@@ -1,0 +1,8 @@
+create database TodoDb
+use TodoDb
+
+Todo
+create table Todo(TodoId int IDENTITY NOT NULL PRIMARY KEY,TodoDetay nvarchar(max),TodoDurum nvarchar(max),TodoPersonel int,TodoSDate date,TodoFDate date);
+Kullanici
+create table Kullanici(KId int IDENTITY NOT NULL PRIMARY KEY,KAd nvarchar(max), KSoy nvarchar(max),KullaniciAdi nvarchar(max),KPassword nvarchar(max),KRole nvarchar(max));
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

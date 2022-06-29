@@ -1,0 +1,76 @@
+@page "/mod"
+@inherits ModeratorBase
+@inject IJSRuntime js
+
+@Kontrol
+<body>
+<br/>
+<p>
+    Id:<input @bind="inputId"/>
+    Detay:<input @bind="inputDetay"/>
+    Durum:
+    <label for="Durum">Todo Durum:</label>
+  <select name="Durum" @bind="inputDurum">
+    <option value="Devam Ediyor...">Devam Ediyor...</option>
+    <option value="Tamamlandı.">Tamamlandı.</option>
+  </select>
+    İlgili Personel:
+    <select name="Rol" @bind="inputPersonel">
+      @foreach(var xm in person)
+      {
+         
+    <option value="@xm.KId">@xm.KullaniciAdi</option>
+  
+      }
+</select>
+    Başlangıç Tarihi:<input type="date" @bind="StartDate"@bind:format="yyyy-MM-dd"/>
+    Bitiş Tarihi:<input type="date" @bind="FinishDate"@bind:format="yyyy-MM-dd"/>
+    </p>
+    <br/>
+    <button class="btn btn-success" @onclick="GetData">Todo Getir</button>
+    <button class="btn btn-primary" @onclick="InsertData">Insert</button>
+    <button class="btn btn-warning" @onclick="UpdateData">Update</button>
+    <button class="btn btn-danger" @onclick="DeleteData">Delete</button>
+    <div class="Tooltip">
+        <br/><br/><br/>
+   <table class="table">
+            <thead>
+                <tr>
+                    <th>Todo ID</th>
+                    <th>Todo Detayı</th>
+                    <th>Todo Durumu</th>
+                    <th>İlgili Personel</th>
+                    <th>Todo Başlangıç Tarihi</th>
+                    <th>Todo Bitiş Tarihi</th>
+                </tr>
+            </thead>
+            <tbody>
+    @if(people == null )
+    {
+        <p><em>Loading....</em></p>
+    }
+    else 
+    {
+        @foreach(var p in people)
+        {
+            <tr>
+
+            <td>
+                @p.Id 
+            </td>
+            <td>@p.TodoDetay</td>
+            <td>@p.TodoDurum</td>
+            <td>@p.TodoPersonel</td>
+            <td>@p.TodoSDate</td>
+            <td>@p.TodoFDate</td>
+              </tr>    
+              
+        }
+       
+    }
+           </tbody>
+ </table>
+ </div>
+    <br/>
+    <p>@error2 Adet Todo Yüklendi.</p>
+    </body>
